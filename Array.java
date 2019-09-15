@@ -8,18 +8,18 @@ class Array_Create {
     void show_menu() {
         System.out.print( "\n1. Создать массив\n" +
                 "2. Узнать количество элементов и информацию о них\n" +
-                "3. Добавить элемент(work in progress)\n" +
+                "3. Добавить элемент\n" +
                 "4. Удалить элемент(work in progress)\n" +
                 "5. Узнать элемент по индексу\n" +
                 "6. Сделать вставку по индексу(work in progress)\n" +
                 "7. Выход\n" );
     }
 
-    void array_create( int func_size ) {
-        array = new int[func_size];
+    void array_create( int size ) {
+        array = new int[size];
 
         System.out.print( "Введите элементы массива: " );
-        for (int i = 0; i < func_size; i++) {
+        for (int i = 0; i < size; i++) {
             array[i] = scan.nextInt();
             count++;
         }
@@ -45,27 +45,33 @@ class Array_Create {
     }
 
     void add_item() {
-        System.out.print( "Введите элемент, который хотите добавить: " );
+        System.out.print("Введите элемент, который хотите добавить: ");
+        int[] pocket_array = new int[count];
+        int pocket_count = count + 1;
 
         int added_item = scan.nextInt();
-        int[] new_array = new int[count + 1];
 
-        for (int i = 0; i < count - 1; i++) {
-            new_array[i] = array[i];
+        for (int i = 0; i < count; i++) {
+            pocket_array[i] = array[i];
         }
 
-        for (int i = 1; i <= new_array.length; i++) {
-            if (i == new_array.length) {
-                new_array[i - 1]  = added_item;
-                System.out.print("here"); //тестовый маркер
+        array = new int[pocket_count];
+
+        for (int i = 0; i < count; i++) {
+            array[i] = pocket_array[i];
+        }
+
+        for (int i = 0; i < pocket_count; i++) {
+            if (i == count) {
+                array[i] = added_item;
             }
-
         }
 
-        for (int i = 0; i < count + 1; i++) {
-            System.out.print(new_array[i] + " ");
+        for (int i = 0; i < pocket_count; i++) {
+            System.out.print(array[i] + " ");
         }
 
+        count++;
     }
 }
 

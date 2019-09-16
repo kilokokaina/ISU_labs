@@ -9,17 +9,17 @@ class Array_Create {
         System.out.print( "\n1. Создать массив\n" +
                 "2. Узнать количество элементов и информацию о них\n" +
                 "3. Добавить элемент\n" +
-                "4. Удалить элемент(work in progress)\n" +
+                "4. Удалить элемент\n" +
                 "5. Узнать элемент по индексу\n" +
                 "6. Сделать вставку по индексу(work in progress)\n" +
                 "7. Выход\n" );
     }
 
-    void array_create( int size ) {
-        array = new int[size];
+    void array_create( int func_size ) {
+        array = new int[func_size];
 
         System.out.print( "Введите элементы массива: " );
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < func_size; i++) {
             array[i] = scan.nextInt();
             count++;
         }
@@ -73,6 +73,36 @@ class Array_Create {
 
         count++;
     }
+
+    void del_item() {
+        System.out.print("Удаление элемента массива\n");
+        int[] pocket_array = new int[count];
+        int pocket_count = count - 1;
+        int deleted_item = 0;
+
+        for (int i = 0; i < count; i++) {
+            pocket_array[i] = array[i];
+
+            if (i == count - 1) {
+                deleted_item = array[i];
+            }
+        }
+
+        array = new int[pocket_count];
+
+        for (int i = 0; i < pocket_count; i++) {
+            array[i] = pocket_array[i];
+        }
+
+        count--;
+
+        System.out.print("Удаленный элемент: " + deleted_item);
+
+    }
+
+    void index_add() {
+        System.out.print("Введите индекс для ")
+    }
 }
 
 public class Array {
@@ -98,6 +128,9 @@ public class Array {
                     break;
                 case 3:
                     main_array.add_item();
+                    break;
+                case 4:
+                    main_array.del_item();
                     break;
                 case 5:
                     main_array.get_item();

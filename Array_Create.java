@@ -135,7 +135,7 @@ class Array_Create {
 
         for (int i = 0; i < count + pocket_count; i++) {
             if (i < index) array[i] = left_array[i];
-            else if (i >= index && i < index + pocket_count) array[i] = pocket_array[i - index];
+            else if (i < index + pocket_count) array[i] = pocket_array[i - index];
             else array[i] = right_array[i - (index + pocket_count)];
         }
 

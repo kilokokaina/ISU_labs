@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Array_Create {
+class Array_Create {
     Scanner scan = new Scanner( System.in );
     public int[] array;
     public int count = 0;
@@ -16,28 +16,37 @@ public class Array_Create {
     }
 
     void array_create( int func_size ) {
-        array = new int[func_size];
+        create : {
+            count = 0;
 
-        System.out.print( "Введите элементы массива: " );
-        for (int i = 0; i < func_size; i++) {
-            array[i] = scan.nextInt();
-            count++;
+            array = new int[func_size];
+
+            System.out.print( "Введите элементы массива: " );
+            for (int i = 0; i < func_size; i++) {
+                array[i] = scan.nextInt();
+                count++;
+            }
         }
     }
 
     void array_show() {
         System.out.print( "Элементы массива: " );
-        for (int i = 0; i < count; i++) {
-            System.out.print(array[i] + " ");
-        }
+        for (int i = 0; i < count; i++) System.out.print(array[i] + " ");
 
         System.out.print( "\nВсего " + count + " элементов\n" );
     }
 
     void get_item() {
-        System.out.print( "Введите индекс элемента: " );
+        int index_num;
 
-        int index_num = scan.nextInt();
+        System.out.print("Введите индекс элемента: ");
+        index_num = scan.nextInt();
+        scan.nextLine();
+
+        if (index_num > count ) {
+            System.out.print("Вы ввели индекс, превышающий размер массива либо массив пуст! Выбирете второй пункт, чтобы узнать количество элементов, или первый пункт, чтобы создать массив.\n");
+            return;
+        }
 
         System.out.print( "Это элемент " + array[index_num - 1] + '\n' );
     }
@@ -49,24 +58,13 @@ public class Array_Create {
 
         int added_item = scan.nextInt();
 
-        for (int i = 0; i < count; i++) {
-            pocket_array[i] = array[i];
-        }
+        for (int i = 0; i < count; i++) pocket_array[i] = array[i];
 
         array = new int[pocket_count];
 
-        for (int i = 0; i < count; i++) {
-            array[i] = pocket_array[i];
-        }
-
         for (int i = 0; i < pocket_count; i++) {
-            if (i == count) {
-                array[i] = added_item;
-            }
-        }
-
-        for (int i = 0; i < pocket_count; i++) {
-            System.out.print(array[i] + " ");
+            if (i < count) array[i] = pocket_array[i];
+            else array[i] = added_item;
         }
 
         count++;
@@ -78,19 +76,20 @@ public class Array_Create {
         int pocket_count = count - 1;
         int deleted_item = 0;
 
+        if (count == 0) {
+            System.out.print("Массив пуст! Выбирете первый пункт для создания массива.\n");
+            return;
+        }
+
         for (int i = 0; i < count; i++) {
             pocket_array[i] = array[i];
 
-            if (i == count - 1) {
-                deleted_item = array[i];
-            }
+            if (i == pocket_count) deleted_item = array[i];
         }
 
         array = new int[pocket_count];
 
-        for (int i = 0; i < pocket_count; i++) {
-            array[i] = pocket_array[i];
-        }
+        for (int i = 0; i < pocket_count; i++) array[i] = pocket_array[i];
 
         count--;
 
@@ -100,33 +99,39 @@ public class Array_Create {
 
     void index_add() {
         int pocket_count = 0;
+        int index;
 
-        System.out.print("Введите индекс для вставки: ");
-        int index = scan.nextInt();
-        scan.nextLine();
+        do {
+            System.out.print("Введите индекс для вставки: ");
+            index = scan.nextInt();
+            scan.nextLine();
+
+            if (index > count) System.out.print("Вы ввели индекс, превышающий размер массива!\n");
+            else break;
+
+        }while (index > count);
 
         System.out.print("Введите один или несколько элементов через пробел для вставки: ");
         String str = scan.nextLine();
 
         String[] str_array = str.split(" ");
 
-        for (String s : str_array) {
-            pocket_count++;
-        }
+        for (String s : str_array) pocket_count++;
 
         int[] pocket_array = new int[pocket_count];
-        for (int i = 0; i < pocket_count; i++) {
-            pocket_array[i] = Integer.parseInt(str_array[i]);
-        }
+
+        for (int i = 0; i < pocket_count; i++) pocket_array[i] = Integer.parseInt(str_array[i]);
 
         int[] left_array = new int[index];
         int[] right_array = new int[count - index];
+
         for (int i = 0; i < count; i++) {
             if (i < index) left_array[i] = array[i];
             else right_array[i - index] = array[i];
         }
 
         array = new int[count + pocket_count];
+
         for (int i = 0; i < count + pocket_count; i++) {
             if (i < index) array[i] = left_array[i];
             else if (i >= index && i < index + pocket_count) array[i] = pocket_array[i - index];
@@ -136,3 +141,4 @@ public class Array_Create {
         count += pocket_count;
     }
 }
+

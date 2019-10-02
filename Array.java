@@ -7,6 +7,7 @@ public class Array {
         int main_size, choose;
 
         Array_Create main_array = new Array_Create();
+        Dynamic_Array new_array = new Dynamic_Array();
 
         do {
             main_array.show_menu();
@@ -31,11 +32,17 @@ public class Array {
                     main_array.get_item();
                     break;
                 case 6:
-                    main_array.index_add();
+                    main_array.input_del();
                     break;
                 case 7:
+                    main_array.index_add();
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    new_array.get_array();
                     break;
             }
-        }while (choose != 7);
+        }while (choose != 8);
     }
 }

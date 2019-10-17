@@ -2,11 +2,8 @@ import java.util.Scanner;
 
 public class Array_Create {
     Scanner scan = new Scanner( System.in );
-    private int[] array;
-    private int count = 0;
-
-    int[] getArray() { return array; }
-    int getCount() { return count; }
+    public static int[] array;
+    public static int count = 0;
 
     void show_menu() {
         System.out.print( "\n1. Создать массив\n" +
@@ -16,8 +13,9 @@ public class Array_Create {
                 "5. Узнать элемент по индексу\n" +
                 "6. Удалить вводимый элемент\n" +
                 "7. Сделать вставку по индексу\n" +
-                "8. Выход\n" +
-                "9. Найти элемент\n");
+                "8. Найти элемент\n" +
+                "9. Сортировка массива\n" +
+                "10. Выход\n");
     }
 
     void array_create( int func_size ) {

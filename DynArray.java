@@ -21,8 +21,15 @@ public class DynArray {
                 case 3:
                     main_array.array_sort();
                     break;
+                case 4:
+                    main_array.del_item();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.print("Попробуйте ввести другое число\n");
+                    break;
             }
-        }while (choose != 4);
-
+        }while (choose != 5);
     }
 }

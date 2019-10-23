@@ -15,10 +15,13 @@ public class Methods {
         System.out.print( "\n1. Создать массив\n" +
                 "2. Узнать количество элементов и информацию о них\n" +
                 "3. Сортировка массива\n" +
-                "4. Выход\n");
+                "4. Удаление повтораяющихся элементов\n" +
+                "5. Выход\n");
     }
 
     void array_create() {
+        count = 0;
+
         System.out.print("Введите минмальный размер числа: ");
         int left_border = scan.nextInt();
 
@@ -50,7 +53,7 @@ public class Methods {
     }
 
     void array_sort() {
-        System.out.print("1. Пузыпьковая сортировка\n" +
+        System.out.print("1. Пузырьковая сортировка\n" +
                 "2. Гномья сортировка\n" +
                 "Выбирете алгоритм сортировки: ");
 
@@ -97,8 +100,35 @@ public class Methods {
 
                 long finish2 = System.currentTimeMillis();
 
+                System.out.print("Массив отсортирован\n");
+
+                for (int j = 0; j < count; j++) {
+                    System.out.print(array[j] + " ");
+                }
+
                 System.out.print("\nЭто заняло " + (finish2 - start2) + " милисекунд");
                 break;
+        }
+    }
+
+    void del_item() {
+        int dup_index = 0;
+        int[] duplicate_array = new int[count];
+
+        for (int i = 1; i < count ; i++) {
+            duplicate_array[0] = array[0];
+
+            if (array[i] != array[i - 1]) {
+                duplicate_array[dup_index] = array[i];
+                dup_index++;
+            }
+        }
+
+        count = dup_index;
+        array = new int[count];
+
+        for (int i = 0; i < count; i++) {
+            array[i] = duplicate_array[i];
         }
     }
 }

@@ -27,7 +27,7 @@ public class ArrayPerson {
         for (Person person : pers_array) System.out.print(person.getFirstName() + " " + person.hashCode() + "\n");
 
         Arrays.sort(pers_array);
-
+        System.out.print("\nArray`s sorting: \n");
         for (Person person : pers_array) System.out.print(person.getFirstName() + " " + person.hashCode() + "\n");
 
         for (int i = 0; i < size - 1; i++) {
@@ -38,7 +38,7 @@ public class ArrayPerson {
             }
         }
 
-        System.out.print("Array sorted.\n");
+        System.out.print("\nArray sorted.\n");
         for (Person person : pers_array) System.out.print(person.getFirstName() + " " + person.hashCode() + "\n");
     }
 }

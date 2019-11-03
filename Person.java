@@ -1,4 +1,4 @@
-public class Person {
+class Person implements Comparable<Person>{
     private int id;
     private String first_name, second_name, mail_index, phone_number;
 
@@ -25,5 +25,10 @@ public class Person {
     @Override
     public String toString() {
         return "User`s info {" + getId() + "; " + getFirstName() + "; " + getPhoneNumber() + "}";
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return getFirstName().compareTo(o.getFirstName());
     }
 }
